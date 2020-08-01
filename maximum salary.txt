@@ -1,0 +1,55 @@
+As the last question of a successful interview, your boss gives you a few pieces of paper with numbers on it and asks you to compose a largest number from these numbers. The resulting number is going to be your salary, so you are very much interested in maximizing this number. How can you do this? For example, for an input consisting of two integers 23 and 3 (23 is not a single-digit number!) it returns 233, while the largest number is in fact 323. In other words, using the largest number from the input as the first number is not a safe move.
+
+Input Format
+
+The first line of the input contains an integer 𝑛. The second line contains integers 𝑎1, 𝑎2, . . . , 𝑎𝑛.
+
+Constraints
+
+1 ≤ 𝑛 ≤ 100; 1 ≤ 𝑎𝑖 ≤ 103 for all 1 ≤ 𝑖 ≤ 𝑛.
+
+Output Format
+
+Output the largest number that can be composed out of 𝑎1, 𝑎2, . . . , 𝑎𝑛.
+
+Sample Input 0
+
+2
+21 2
+Sample Output 0
+
+221
+Explanation 0
+
+Note that in this case the above algorithm also returns an incorrect answer 212.
+SOLUTION
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int comp(string a, string b) 
+{ 
+    string x = a+b; 
+  
+    string y = b+a; 
+  
+  if(x>y)
+    return 1;
+  else
+    return 0;
+} 
+
+int main() {
+  int n;
+  cin>>n;
+  string str[n];
+  
+  for(int i=0;i<n;i++)
+    cin>>str[i];
+  sort(str,str+n, comp);
+  for(int i=0;i<n;i++)
+    cout<<str[i];
+}
