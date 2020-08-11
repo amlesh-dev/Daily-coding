@@ -1,0 +1,71 @@
+Given a number n, we need to print all n-digit binary numbers with equal sum in left and right halves. If n is odd, then mid element can be either 0 or 1.
+
+Input Format
+
+input contains just 1 interger n
+
+Constraints
+
+1<=n<=10
+
+Output Format
+
+Print all possible binary numbers with eqaul sum in both halves
+
+Sample Input 0
+
+5
+Sample Output 0
+
+10001 10101 10010 10110 11011 11111
+Sample Input 1
+
+3
+Sample Output 1
+
+101 111 
+SOLUTION
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include<bits/stdc++.h>
+using namespace std;
+
+void pos(int n, string l="", string r="", int d=0) 
+{  
+    if (n == 0) 
+    {  
+        if (d == 0) 
+            cout << l + r << " "; 
+        return; 
+    } 
+    if (n == 1) 
+    { 
+        if (d == 0) 
+        { 
+            cout << l + "0" + r << " "; 
+            cout << l + "1" + r << " "; 
+        } 
+        return; 
+    } 
+    if ((2 * abs(d) <= n)) 
+    { 
+        if (l != "") 
+        { 
+            pos(n-2, l+"0", r+"0", d); 
+            pos(n-2, l+"0", r+"1", d-1); 
+        } 
+        pos(n-2, l+"1", r+"0", d+1); 
+        pos(n-2, l+"1", r+"1", d); 
+    } 
+} 
+
+int main() 
+{ 
+    int n;
+    cin>>n;
+    pos(n); 
+    return 0; 
+} 
